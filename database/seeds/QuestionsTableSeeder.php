@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Question;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class QuestionsTableSeeder extends Seeder
@@ -28,13 +29,15 @@ class QuestionsTableSeeder extends Seeder
             'Как организовать систему плагинов (пакетов) в Node.JS + Electron?',
             'Как полностью написать сайт с нуля, если ты знаешь только frontend?'
         ];
-        $body = 'Как построен алгоритм искусственного интеллекта, в котором он получает "вознаграждения"? Что способствует нейрону понять что правильно а что нет?';
 
         foreach ($titles as $title) {
-            Question::create([
+            /** @var Question $question */
+            $question = factory(Question::class)->create([
                 'title' => $title,
-                'body' => $body
             ]);
+
+            $subscribers = User::inRandomOrder()->take(random_int(1, 50))->get();
+            $question->subscribers()->saveMany($subscribers);
         }
     }
 }
