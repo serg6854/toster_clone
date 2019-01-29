@@ -35,21 +35,21 @@
 
                 <div class="question__body">
                     <div class="question__text js-question-text" itemprop="text description">
-                        Есть ридер, работает через USB.<br><br>
-                        <a href="https://bolid.ru/production/orion/access-controller/proxy-usb-ma.html" rel="nofollow">https://bolid.ru/production/orion/access-controlle...</a><br><br>
-                        Каким образом считать информацию в браузер?<br><br>
-                        Т.е. надо чтобы при считывании ид карты заполнялось в <code class="html hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></code><br><br>
-                        Как такое работает?  </div>
+                        {{ $question->body }}
+                    </div>
+
                     <ul class="question__attrs inline-list">
                         <li class="inline-list__item inline-list__item_bullet">
-        <span class="question__pub-date">
-          Вопрос задан
-          <time pubdate="" itemprop="dateCreated" datetime="2019-01-29 10:56:36" title="Дата публикации: 29 янв. 2019, в 10:56">
-            6 часов назад          </time>
-                  </span>
+                            <span class="question__pub-date">
+                                Вопрос задан
+                                <time pubdate="" itemprop="dateCreated" datetime="2019-01-29 10:56:36"
+                                      title="Дата публикации: 29 янв. 2019, в 10:56">
+                                    {{ $question->created_at->diffForHumans() }}
+                                </time>
+                            </span>
                         </li>
                         <li class="inline-list__item inline-list__item_bullet">
-                            <span class="question__views-count question__views-count_full">70 просмотров</span>
+                            <span class="question__views-count question__views-count_full">{{ $question->views }} просмотров</span>
                         </li>
                     </ul>
                 </div>

@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
 
             $table->string('title');
             $table->text('body');
+            $table->unsignedInteger('views')->default(0);
 
             $table->timestamps();
         });
