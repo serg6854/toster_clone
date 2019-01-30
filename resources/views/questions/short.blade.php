@@ -48,22 +48,14 @@
                             {{ $question->created_at->diffForHumans() }}
                         </time>
                     </li>
+
                     <li class="inline-list__item inline-list__item_bullet">
                         @include('questions._views', ['views' => $question->views])
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="question__answers-count ">
-            <a class="mini-counter" href="https://toster.ru/q/599207#answers"
-               title="Количество ответов на вопрос" role="lazy_anchor">
-                <div class="mini-counter__count mini-counter__count_grey">
-                    0
-                </div>
-                <div class="mini-counter__value">
-                    ответов
-                </div>
-            </a>
-        </div>
+
+        @include('questions._answers', ['answers' => $question->answers()->count()])
     </div>
 </li>

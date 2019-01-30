@@ -5,7 +5,7 @@
 <div class="page__filters page__filters_mobile" role="filters_container">
         <span class="page__filters-toggler" role="filters_toggler">
             <svg class="icon_svg icon_arrow_down" viewBox="0 0 51 32">
-                <use xlink:href="images/sprite_0.1.svg#icon_arrow_down"></use>
+                <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_arrow_down"></use>
             </svg>
         </span>
 
@@ -46,7 +46,7 @@
         <ul class="content-list" role="content-list">
             @foreach($questions as $question)
 
-                @include('questions.item', ['question' => $question])
+                @include('questions.short', ['question' => $question])
 
             @endforeach
         </ul>
@@ -115,7 +115,7 @@
                                 <input type="checkbox" name="complexities[]" value="2"
                                        checked="">
                                 <svg class="icon_form icon_check" viewBox="0 0 45 32">
-                                    <use xlink:href="images/sprite_0.1.svg#icon_check"></use>
+                                    <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_check"></use>
                                 </svg>
                                 <span class="checkbox__label">Простой</span>
                             </label>
@@ -125,7 +125,7 @@
                                 <input type="checkbox" name="complexities[]" value="3"
                                        checked="">
                                 <svg class="icon_form icon_check" viewBox="0 0 45 32">
-                                    <use xlink:href="images/sprite_0.1.svg#icon_check"></use>
+                                    <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_check"></use>
                                 </svg>
                                 <span class="checkbox__label">Средний</span>
                             </label>
@@ -135,7 +135,7 @@
                                 <input type="checkbox" name="complexities[]" value="4"
                                        checked="">
                                 <svg class="icon_form icon_check" viewBox="0 0 45 32">
-                                    <use xlink:href="images/sprite_0.1.svg#icon_check"></use>
+                                    <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_check"></use>
                                 </svg>
                                 <span class="checkbox__label">Сложный</span>
                             </label>

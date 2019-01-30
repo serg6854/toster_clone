@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -37,6 +38,10 @@ class QuestionsTableSeeder extends Seeder
             ]);
 
             $subscribers = User::inRandomOrder()->take(random_int(1, 50))->get();
+            factory(Answer::class, random_int(1, 10))->create([
+                'question_id' => $question->id
+            ]);
+
             $question->subscribers()->saveMany($subscribers);
         }
     }

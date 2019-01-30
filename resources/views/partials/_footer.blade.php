@@ -24,7 +24,7 @@
                     <a class="menu__item-link tw" href="https://twitter.com/toster_ru"
                        title="Наш аккаунт в Twitter">
                         <svg class="icon_svg icon_social_twitter" viewBox="0 0 39 32">
-                            <use xlink:href="images/sprite_0.1.svg#icon_social_twitter"></use>
+                            <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_social_twitter"></use>
                         </svg>
                     </a>
                 </li>
@@ -32,7 +32,7 @@
                     <a class="menu__item-link fb" href="https://www.facebook.com/toster.ru"
                        title="Наша группа в Facebook">
                         <svg class="icon_svg icon_social_facebook" viewBox="0 0 17 32">
-                            <use xlink:href="images/sprite_0.1.svg#icon_social_facebook"></use>
+                            <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_social_facebook"></use>
                         </svg>
                     </a>
                 </li>
@@ -40,7 +40,7 @@
                     <a class="menu__item-link vk" href="http://vk.com/toster_ru"
                        title="Наша группа на Вконтакте">
                         <svg class="icon_svg icon_social_vk" viewBox="0 0 56 32">
-                            <use xlink:href="images/sprite_0.1.svg#icon_social_vk"></use>
+                            <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_social_vk"></use>
                         </svg>
                     </a>
                 </li>

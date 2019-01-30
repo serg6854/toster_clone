@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang='en'>
 <head>
-    <title>@yield('title', 'Интересные вопросы') — Toster.ru</title>
+    <title>@yield('title', 'Интересные вопросы') — {{ ucfirst(config('app.url')) }}</title>
 
     <meta charset="utf-8">
 
@@ -29,8 +29,7 @@
 
                         <div class="notices-container" role="notice_container"></div>
 
-
-                            @yield('content')
+                        @yield('content')
 
                     </div>
                 </div>
@@ -71,8 +70,6 @@
     <var data-name="feedtype" data-values="main,questions"></var>
     <var data-name="user" data-values="guest"></var>
 </div>
-
-<script src="https://dr.habracdn.net/toster/frontend.9a1aacaa-e500-4c39-aada-10e45dd55928.js"></script>
 
 <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0"
     style="display: none;"></ul>

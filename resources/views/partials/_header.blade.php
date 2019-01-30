@@ -16,7 +16,7 @@
                 </div>
                 <button class="btn btn_suggest" type="button" role="btn_suggest">
                     <svg class="icon_svg icon_search" viewBox="0 0 32 32">
-                        <use xlink:href="images/sprite_0.1.svg#icon_search"></use>
+                        <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_search"></use>
                     </svg>
                 </button>
             </form>
@@ -25,7 +25,7 @@
                    data-value="Чтобы задать вопрос и&nbsp;получить на&nbsp;него квалифицированный ответ."
                    data-title="" data-auth-ret="question/new" data-no-button="">
                     <svg class="icon_svg icon_plus" viewBox="0 0 32 32">
-                        <use xlink:href="images/sprite_0.1.svg#icon_plus"></use>
+                        <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_plus"></use>
                     </svg>
                     <span>Задать вопрос</span>
                 </a>
@@ -35,12 +35,12 @@
     <div class="layout__topbar_canvas-toggler">
         <button class="btn btn_navbar_toggle" role="toggle_navbar" type="button">
             <svg class="icon_svg icon_burger" viewBox="0 0 32 32">
-                <use xlink:href="images/sprite_0.1.svg#icon_burger"></use>
+                <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_burger"></use>
             </svg>
         </button>
-        <a class="logo logo_topbar" href="https://toster.ru/">
+        <a class="logo logo_topbar" href="{{ config('app.url') }}">
             <svg class="icon_svg icon_logo">
-                <use xlink:href="images/sprite_0.1.svg#icon_logo"></use>
+                <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_logo"></use>
             </svg>
         </a>
     </div>

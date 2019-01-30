@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Question extends Model
 {
+    protected $with = ['author'];
+
     protected $fillable = [
         'user_id'
     ];
@@ -24,6 +27,14 @@ class Question extends Model
      */
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function answers(): HasMany
+    {
+        return $this->hasMany(Answer::class);
     }
 }
