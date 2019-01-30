@@ -11,8 +11,16 @@ class QuestionsController extends Controller
     public function __construct()
     {
         $this->middleware('auth')
-            ->only('subscribe')
+            ->only([
+                'subscribe',
+                'create'
+            ])
         ;
+    }
+
+    public function create()
+    {
+        return view('questions.create');
     }
 
     public function show(Question $question)

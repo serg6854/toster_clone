@@ -8,6 +8,7 @@ Route::get('/', function () {
     return view('home', compact('questions'));
 })->name('home');
 
+Route::get('question/create', 'QuestionsController@create')->name('question.create');
 Route::get('questions/latest', 'QuestionsController@latest')->name('questions.latest');
 Route::get('questions', 'QuestionsController@latest')->name('questions.latest');
 Route::get('q/{question}', 'QuestionsController@show')->name('question.show');

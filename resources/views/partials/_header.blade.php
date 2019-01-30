@@ -21,7 +21,7 @@
                 </button>
             </form>
             <div class="layout__topbar_add-question">
-                <a class="btn btn_green btn_add-question" href="question/new" role="auth_popup_trigger"
+                <a class="btn btn_green btn_add-question" href="{{ route('question.create') }}" role="auth_popup_trigger"
                    data-value="Чтобы задать вопрос и&nbsp;получить на&nbsp;него квалифицированный ответ."
                    data-title="" data-auth-ret="question/new" data-no-button="">
                     <svg class="icon_svg icon_plus" viewBox="0 0 32 32">

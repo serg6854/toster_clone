@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    public function show(User $user)
+    {
+        return view('profile.show', [
+            'user' => $user
+        ]);
+    }
+
     public function answers(User $user)
     {
         $answers = $user->answers()->paginate();

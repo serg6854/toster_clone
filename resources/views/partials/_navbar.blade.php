@@ -6,10 +6,28 @@
     </a>
     <section class="user-panel" role="user_expand_menu">
         <div class="user-panel_head">
-            <svg class="icon_svg icon_menu_lock" viewBox="0 0 32 32">
-                <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_menu_lock"></use>
-            </svg>
-            <a class="user-panel__login-link" href="auth/tmid?ret=@referer">Войти на сайт</a>
+            @auth
+                <a class="user-panel__avatar" href="{{ route('profile', auth()->user()) }}">
+                    <svg class="icon_userpic" viewBox="0 0 32 32">
+                        <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_userpic"></use>
+                    </svg>
+                </a>
+                <div class="user-panel__side">
+                    <a class="user-panel__user-name" href="{{ route('profile', auth()->user()) }}">
+                        {{ auth()->user() }}
+                    </a>
+                    <button class="btn btn_drop" role="expand_menu_trigger">
+                        <svg class="icon_svg icon_arrow_down" viewBox="0 0 51 32">
+                            <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_arrow_down"></use>
+                        </svg>
+                    </button>
+                </div>
+            @else
+                <svg class="icon_svg icon_menu_lock" viewBox="0 0 32 32">
+                    <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_menu_lock"></use>
+                </svg>
+                <a class="user-panel__login-link" href="auth/tmid?ret=@referer">Войти на сайт</a>
+            @endauth
         </div>
     </section>
     <ul class="main-menu">
