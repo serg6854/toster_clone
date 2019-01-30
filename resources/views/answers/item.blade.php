@@ -1,4 +1,13 @@
 <div class="content-list__item" role="answer_item " id="answer_item_{{ $answer->id }}">
+
+    @if(!empty($withQuestion))
+    <h2 class="question__title">
+        <a class="question__title-link" href="{{ route('question.show', $answer->question) }}#answer_{{ $answer->id }}">
+            {{ $answer->question->title }}
+        </a>
+    </h2>
+    @endif
+
     <div class="answer_wrapper " id="answer_1336497" role="toggle_delete_answer" itemprop="suggestedAnswer " itemscope="" itemtype="http://schema.org/Answer">
         <div class="answer " data-created_at="1548749005">
             <div class="answer__header">

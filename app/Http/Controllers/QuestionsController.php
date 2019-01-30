@@ -20,9 +20,9 @@ class QuestionsController extends Controller
     public function latest()
     {
         $questions = Question::orderBy('created_at', 'desc')
-            ->paginate(5);
+            ->paginate();
 
-        return view('home', compact('questions'));
+        return view('questions.index', compact('questions'));
     }
 
     public function subscribers(Request $request)

@@ -29,12 +29,26 @@
 
                         <div class="notices-container" role="notice_container"></div>
 
+                        @hasSection('page_title')
+                        <header class="page__header">
+                            <h1 class="page__header-title">
+                                @yield('page_title', 'Foobar')
+                            </h1>
+                        </header>
+                        @endif
+
                         @yield('content')
 
                     </div>
                 </div>
 
-                @include('partials._sidebar')
+                <aside class="column_sidebar">
+
+                    @section('sidebar')
+                        @include('partials._sidebar')
+                    @show
+
+                </aside>
 
             </div>
         </div>
@@ -62,13 +76,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<div id="dfp_target" style="display: none">
-    <var data-name="dev" data-values="0"></var>
-    <var data-name="pagetype" data-values="main,feed"></var>
-    <var data-name="feedtype" data-values="main,questions"></var>
-    <var data-name="user" data-values="guest"></var>
 </div>
 
 <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0"

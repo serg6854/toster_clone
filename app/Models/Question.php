@@ -4,20 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Question extends Model
 {
+    public const EASY = 1;
+
+    public const MIDDLE = 2;
+
+    public const HARD = 3;
+
     protected $with = ['author'];
+
+    protected $withCount = ['subscribers', 'answers'];
 
     protected $fillable = [
         'user_id'
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function subscribers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function subscribers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'question_subscriber');
     }

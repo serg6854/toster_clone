@@ -16,32 +16,30 @@
                     <div class="content-list content-list_answers" id="solutions_list">
                     </div>
                 </div>
+
                 <a class="question__invate-expert" href="#" role="auth_popup_trigger" data-value="Чтобы пригласить эксперта, который сможет ответить на вопрос" data-question="599276">
                     Пригласить эксперта
                 </a>
+
                 <div class="section section_answers " id="answers" role="answers_section ">
                     <meta itemprop="answerCount" content="3">
                     <header class="section-header">
                         <strong class="section-header__title">
                             Ответы на вопрос
                             <span class="section-header__counter" role="answers_counter">
-                                {{ $question->answers()->count() }}
+                                {{ $question->answers_count }}
                             </span>
                         </strong>
                     </header>
-                    <div class="content-list content-list_answers" id="answers_list">
 
-                        @foreach($question->answers as $answer)
-                            @include('answers.item', ['answer' => $answer])
-                        @endforeach
-
-                    </div>
+                    @include('answers.list', ['answers' => $question->answers()->paginate()])
                 </div>
 
                 <div class="section section_form-answers" id="answer-form">
                     <header class="section-header">
                         <strong class="section-header__title">
-                            Ваш ответ на вопрос      </strong>
+                            Ваш ответ на вопрос
+                        </strong>
                     </header>
                     <div class="empty-block">
                         <div class="empty-block__inner">
@@ -76,12 +74,8 @@
                                             </li>
                                         </ul>
                                         <span class="question__complexity">
-              <span class="svg-icon_level svg-icon_level-3">
-                <svg class="svg-icon" width="51" height="32" viewBox="0 0 51 32"><path d="M20.806 24.295c-1.767 2.88-.575 5.249 1.874 6.579s5.227 1.116 6.994-1.763 12.92-28.574 11.95-29.102c-.971-.526-19.051 21.406-20.818 24.285zm4.794-18.301c1.119 0 2.213.091 3.279.261 1.122-1.32 2.377-2.776 3.599-4.159-2.182-.594-4.486-.917-6.878-.917-14.355 0-25.6 11.386-25.6 25.921 0 .894.042 1.789.125 2.66.126 1.325 1.383 2.3 2.777 2.185 1.409-.118 2.448-1.288 2.322-2.613-.069-.73-.104-1.48-.104-2.232 0-11.835 8.996-21.105 20.48-21.105zm18.479 3.008c-.714 1.805-1.47 3.646-2.135 5.237 2.603 3.537 4.135 7.979 4.135 12.859 0 .763-.036 1.529-.109 2.276-.128 1.324.91 2.496 2.318 2.617l.235.01c1.309 0 2.425-.94 2.546-2.189.086-.891.13-1.804.13-2.712 0-7.108-2.694-13.458-7.121-18.096z"></path></svg>
-              </span>
-              <span class="question__complexity-text">
-                Средний              </span>
-            </span>
+                                            @include('questions._complexity', ['complexity' => $question->complexity])
+                                        </span>
                                     </div>
                                     <h2 class="question__title">
                                         <a class="question__title-link question__title-link_list" href="https://toster.ru/q/599422?from=questions_similar">
@@ -91,7 +85,7 @@
                                     <ul class="question__attrs inline-list">
                                         <li class="inline-list__item inline-list__item_bullet">
                                             <span class="question__views-count" title="Количество подписавшихся на вопрос">
-                                                {{ $question->subscribers()->count() }} подписчика
+                                                {{ $question->subscribers_count }} подписчика
                                             </span>
                                         </li>
                                         <li class="inline-list__item inline-list__item_bullet">
@@ -108,9 +102,11 @@
                             <div class="question__answers-count ">
                                 <a class="mini-counter" href="https://toster.ru/q/599422#answers" title="Количество ответов на вопрос" role="lazy_anchor">
                                     <div class="mini-counter__count mini-counter__count_grey">
-                                        0        </div>
+                                        0
+                                    </div>
                                     <div class="mini-counter__value">
-                                        ответов        </div>
+                                        ответов
+                                    </div>
                                 </a>
                             </div>
                         </div>

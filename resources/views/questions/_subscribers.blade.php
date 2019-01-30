@@ -1,9 +1,9 @@
-@if($question->subscribers()->count() >= 1)
+@if($question->subscribers_count >= 1)
     <div class="question-head_subscribers">
         <ul class="subscribers-list subscribers-list_short">
             @foreach($question->subscribers->take(5) as $subscriber)
                 <li class="subscribers-list__item" title="lagudal подписан">
-                    <a class="subscribers-list__user-avatar" href="https://toster.ru/user/lagudal">
+                    <a class="subscribers-list__user-avatar" href="{{ route('profile', $subscriber) }}">
                         <svg class="icon_userpic" viewBox="0 0 32 32">
                             <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_userpic"></use>
                         </svg>
@@ -11,7 +11,7 @@
                 </li>
             @endforeach
 
-            @if($question->subscribers->take(5)->count() < $question->subscribers()->count())
+            @if($question->subscribers->take(5)->count() < $question->subscribers_count)
             <li class="subscribers-list__item subscribers-list__item_more" title="Все подписчики на вопрос">
                 <a role="link_subscribers"
                    href="{{ route('question.subscribers', ['question_id' => $question->id]) }}#question_subscribers">

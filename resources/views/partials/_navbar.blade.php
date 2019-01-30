@@ -30,7 +30,7 @@
             </a>
         </li>
         <li class="main-menu__item">
-            <a class="main-menu__link " href="users">
+            <a class="main-menu__link " href="{{ route('users.all') }}">
                 <svg class="icon_svg icon_menu_users" viewBox="0 0 34 32">
                     <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_menu_users"></use>
                 </svg>

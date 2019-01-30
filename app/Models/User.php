@@ -18,22 +18,40 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * {@inheritdoc}
      */
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * {@inheritdoc}
      */
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $withCount = ['answers'];
+
+    public function __toString()
+    {
+        if (isset($this->first_name) || isset($this->last_name)) {
+            return implode(' ', [$this->first_name, $this->last_name]);
+        }
+
+        return $this->nickname;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'nickname';
+    }
 
     /**
      * @return BelongsToMany
@@ -57,19 +75,5 @@ class User extends Authenticatable
     public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);
-    }
-
-    public function __toString()
-    {
-        if (isset($this->first_name) || isset($this->last_name)) {
-            return implode(' ', [$this->first_name, $this->last_name ?? '']);
-        }
-
-        return $this->nickname;
-    }
-
-    public function getRouteKeyName(): string
-    {
-        return 'nickname';
     }
 }

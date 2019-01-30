@@ -20,6 +20,7 @@ class CreateQuestionsTable extends Migration
             $table->text('body');
             $table->unsignedInteger('views')->default(0);
             $table->unsignedInteger('user_id');
+            $table->enum('complexity', [1, 2, 3]);
 
             $table->foreign('user_id')
                 ->references('id')->on('users')
