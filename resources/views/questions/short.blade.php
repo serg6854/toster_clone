@@ -43,7 +43,7 @@
                     </li>
                     <li class="inline-list__item inline-list__item_bullet">
                         <time class="question__date question__date_publish" pubdate=""
-                              title="Дата публикации: {{ $question->created_at->format('d M. Y') }}, в {{ $question->created_at->format('H:m') }}"
+                              title="Дата публикации: {{ $question->created_at->format('d M. Y') }}, в {{ $question->created_at->format('H:i') }}"
                               datetime="{{ $question->created_at->format('Y-m-d H:m:i') }}">
                             {{ $question->created_at->diffForHumans() }}
                         </time>

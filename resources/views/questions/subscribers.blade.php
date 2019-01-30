@@ -31,8 +31,8 @@
                                 </a>
                                 <h2 class="card__head-title">
                                     <a href="{{ route('profile', $subscriber) }}" itemprop="url">
-                                        <meta itemprop="name" content="{{ $subscriber->name }}">
-                                        {{ $subscriber->name }}
+                                        <meta itemprop="name" content="{{ $subscriber }}">
+                                        {{ $subscriber }}
                                     </a>
                                 </h2>
                             </div>

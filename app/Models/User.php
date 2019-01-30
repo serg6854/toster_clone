@@ -8,6 +8,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * @property string first_name
+ * @property string last_name
+ * @property string nickname
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -52,5 +57,19 @@ class User extends Authenticatable
     public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function __toString()
+    {
+        if (isset($this->first_name) || isset($this->last_name)) {
+            return implode(' ', [$this->first_name, $this->last_name ?? '']);
+        }
+
+        return $this->nickname;
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'nickname';
     }
 }
