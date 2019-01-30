@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->only('subscribe')
+        ;
+    }
+
     public function show(Question $question)
     {
         $question->load('subscribers');
@@ -30,5 +37,12 @@ class QuestionsController extends Controller
         $question = Question::findOrFail($request->question_id);
 
         return view('questions.subscribers', compact('question'));
+    }
+
+    public function subscribe(Question $question)
+    {
+        $question->subscribe();
+
+        return redirect()->back();
     }
 }

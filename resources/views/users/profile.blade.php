@@ -45,7 +45,7 @@
 <div class="page__tabs page__tabs_mobile" role="tabs_container">
   <span class="page__tabs-toggler" role="tabs_toggler">
     <svg class="icon_svg icon_arrow_down" viewBox="0 0 51 32">
-      <use xlink:href="https://toster.ru/images/sprite_0.1.svg#icon_arrow_down"></use>
+      <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_arrow_down"></use>
     </svg>
   </span>
     <div class="page__tabs-subheader">

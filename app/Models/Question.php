@@ -46,4 +46,24 @@ class Question extends Model
     {
         return $this->hasMany(Answer::class);
     }
+
+    public function subscribe()
+    {
+        $userId = auth()->user()->id;
+
+        $this->isSubscribed()
+            ? $this->subscribers()->detach($userId)
+            : $this->subscribers()->attach($userId);
+    }
+
+    public function isSubscribed($user = null)
+    {
+        if (!auth()->check()) {
+            return false;
+        }
+
+        $user = $user ?? auth()->user();
+
+        return $this->subscribers->contains($user->id);
+    }
 }

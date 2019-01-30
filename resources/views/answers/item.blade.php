@@ -8,13 +8,15 @@
     </h2>
     @endif
 
-    <div class="answer_wrapper " id="answer_1336497" role="toggle_delete_answer" itemprop="suggestedAnswer " itemscope="" itemtype="http://schema.org/Answer">
+        <div class="answer_wrapper " id="answer_{{ $answer->id }}" role="toggle_delete_answer"
+             itemprop="suggestedAnswer " itemscope="" itemtype="http://schema.org/Answer">
         <div class="answer " data-created_at="1548749005">
             <div class="answer__header">
 
                 @include('authors._summary', ['author' => $answer->author])
 
             </div>
+
             <div class="answer__body">
                 <div class="answer__body_inner">
                     <div class="answer__text js-answer-text" itemprop="text">

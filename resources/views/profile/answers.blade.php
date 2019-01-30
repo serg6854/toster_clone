@@ -1,5 +1,7 @@
 @extends('base')
 
+@section('title', 'Ответы пользователя ' . $user)
+
 @section('content')
     @component('users.profile', ['user' => $user])
 

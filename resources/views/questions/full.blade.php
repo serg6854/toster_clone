@@ -49,15 +49,24 @@
     </div>
 
     <div class="buttons-group buttons-group_question">
-        <a class="btn btn_subscribe" href="#" role="auth_popup_trigger"
-           title="Подписаться на вопрос"
-           data-value="Чтобы получать уведомления о&nbsp;новых ответах на&nbsp;вопрос.">
-            Подписаться
-            <span class="btn__counter" role="subscribers_count">
-                <meta itemprop="interactionCount" content="1 UserSubscriptions">
-                {{ $question->subscribers_count }}
-            </span>
-        </a>
+        <form action='{{ route('question.subscribe', $question) }}' method='POST' style='display: inline-block'>
+            @csrf
+            @if($question->isSubscribed(auth()->user()))
+                @method('DELETE')
+            @endif
+
+            <button type='submit'
+                    class="btn btn_subscribe @if($question->isSubscribed(auth()->user())) btn_active @endif"
+                    role="auth_popup_trigger"
+                    title="Подписаться на вопрос"
+                    data-value="Чтобы получать уведомления о&nbsp;новых ответах на&nbsp;вопрос.">
+                Подписаться
+                <span class="btn__counter" role="subscribers_count">
+                    <meta itemprop="interactionCount" content="1 UserSubscriptions">
+                    {{ $question->subscribers_count }}
+                </span>
+            </button>
+        </form>
 
         <span class="btn btn_outline_grey btn_complexity" title="Проголосовало: 1" disabled="true">
             @include('questions._complexity', ['complexity' => $question->complexity])
