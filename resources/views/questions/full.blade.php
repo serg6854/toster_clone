@@ -51,12 +51,12 @@
     <div class="buttons-group buttons-group_question">
         <form action='{{ route('question.subscribe', $question) }}' method='POST' style='display: inline-block'>
             @csrf
-            @if($question->isSubscribed(auth()->user()))
+            @if($question->isSubscribed())
                 @method('DELETE')
             @endif
 
             <button type='submit'
-                    class="btn btn_subscribe @if($question->isSubscribed(auth()->user())) btn_active @endif"
+                    class="btn btn_subscribe @if($question->isSubscribed()) btn_active @endif"
                     role="auth_popup_trigger"
                     title="Подписаться на вопрос"
                     data-value="Чтобы получать уведомления о&nbsp;новых ответах на&nbsp;вопрос.">

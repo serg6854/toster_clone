@@ -2,11 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\{
+    Model,
+    Relations\BelongsTo,
+    Relations\BelongsToMany,
+    Relations\HasMany
+};
+use Illuminate\Support\Collection;
 
+/**
+ * @property string              body
+ * @property integer             complexity
+ * @property User[]|Collection   subscribers
+ * @property Answer[]|Collection answers
+ * @property Answer[]|Collection solutions
+ */
 class Question extends Model
 {
     public const EASY = 1;
@@ -15,10 +25,19 @@ class Question extends Model
 
     public const HARD = 3;
 
-    protected $with = ['author'];
+    /**
+     * {@inheritdoc}
+     */
+    protected $with = ['author', 'solutions', 'answers'];
 
+    /**
+     * {@inheritdoc}
+     */
     protected $withCount = ['subscribers', 'answers'];
 
+    /**
+     * {@inheritdoc}
+     */
     protected $fillable = [
         'user_id'
     ];
@@ -47,7 +66,16 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
-    public function subscribe()
+    /**
+     * @return HasMany
+     */
+    public function solutions(): HasMany
+    {
+        return $this->hasMany(Answer::class)
+            ->where('is_solution', true);
+    }
+
+    public function subscribe(): void
     {
         $userId = auth()->user()->id;
 
@@ -65,5 +93,13 @@ class Question extends Model
         $user = $user ?? auth()->user();
 
         return $this->subscribers->contains($user->id);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSolutions(): bool
+    {
+        return $this->solutions->isNotEmpty();
     }
 }

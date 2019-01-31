@@ -26,7 +26,7 @@
                 <svg class="icon_svg icon_menu_lock" viewBox="0 0 32 32">
                     <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_menu_lock"></use>
                 </svg>
-                <a class="user-panel__login-link" href="auth/tmid?ret=@referer">Войти на сайт</a>
+                <a class="user-panel__login-link" href="{{ route('login') }}">Войти на сайт</a>
             @endauth
         </div>
     </section>

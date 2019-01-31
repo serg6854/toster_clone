@@ -1,12 +1,15 @@
 <?php
 
+use App\Models\Question;
+use App\Models\User;
 use Faker\Generator as Faker;
 
-$factory->define(App\Models\Question::class, function (Faker $faker) {
+$factory->define(Question::class, function (Faker $faker) {
     return [
+        'title'      => $faker->sentence,
         'body'       => $faker->realText(random_int(1000, 2000)),
-        'user_id'    => \App\Models\User::inRandomOrder()->first()->id,
+        'user_id'    => User::inRandomOrder()->first()->id,
         'created_at' => $faker->dateTimeBetween('-1 month'),
-        'complexity' => $faker->randomElement([1, 2, 3])
+        'complexity' => $faker->randomElement([1, 2, 3]),
     ];
 });

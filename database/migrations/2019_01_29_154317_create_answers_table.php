@@ -17,6 +17,7 @@ class CreateAnswersTable extends Migration
             $table->increments('id');
 
             $table->text('body');
+            $table->boolean('is_solution')->default(false);
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('question_id');
 

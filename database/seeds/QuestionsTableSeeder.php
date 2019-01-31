@@ -31,18 +31,23 @@ class QuestionsTableSeeder extends Seeder
             'Как полностью написать сайт с нуля, если ты знаешь только frontend?'
         ];
 
-        foreach ($titles as $title) {
-            /** @var Question $question */
-            $question = factory(Question::class)->create([
-                'title' => $title,
-            ]);
+//        foreach ($titles as $title) {
+//            /** @var Question $question */
+//            factory(Question::class)->create([
+//                'title' => $title,
+//            ]);
+//        }
 
-            $subscribers = User::inRandomOrder()->take(random_int(1, 50))->get();
-            factory(Answer::class, random_int(1, 10))->create([
-                'question_id' => $question->id
-            ]);
+        factory(Question::class, 100)
+            ->create()
+            ->each(function (Question $question) {
+                factory(Answer::class, random_int(1, 10))->create([
+                    'question_id' => $question->id
+                ]);
 
-            $question->subscribers()->saveMany($subscribers);
-        }
+                $subscribers = User::inRandomOrder()->take(random_int(1, 50))->get();
+                $question->subscribers()->saveMany($subscribers);
+            });
+
     }
 }

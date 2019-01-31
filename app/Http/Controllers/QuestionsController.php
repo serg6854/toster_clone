@@ -25,25 +25,29 @@ class QuestionsController extends Controller
 
     public function show(Question $question)
     {
-        $question->load('subscribers');
+        $answers = $question->answers->filter(function ($item) {
+            return !$item->is_solution;
+        });
 
         event(new QuestionViewEvent($question));
 
-        return view('questions.show', compact('question'));
+        return view('questions.show', [
+            'question'  => $question,
+            'solutions' => $question->solutions,
+            'answers'   => $answers,
+        ]);
     }
 
-    public function latest()
+    public function all()
     {
         $questions = Question::orderBy('created_at', 'desc')
             ->paginate();
 
-        return view('questions.index', compact('questions'));
+        return view('home', compact('questions'));
     }
 
-    public function subscribers(Request $request)
+    public function subscribers(Question $question)
     {
-        $question = Question::findOrFail($request->question_id);
-
         return view('questions.subscribers', compact('question'));
     }
 

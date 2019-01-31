@@ -8,7 +8,8 @@ $factory->define(Answer::class, function (Faker $faker) {
     $author = User::inRandomOrder()->first();
 
     return [
-        'body'    => $faker->realText(random_int(500, 1000)),
-        'user_id' => $author->id
+        'body'        => $faker->realText(random_int(500, 1000)),
+        'is_solution' => $faker->boolean,
+        'user_id'     => $author->id,
     ];
 });

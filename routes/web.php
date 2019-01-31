@@ -3,17 +3,18 @@
 use App\Models\Question;
 
 Route::get('/', function () {
-    $questions = Question::with('subscribers')->paginate(10);
+    $questions = Question::paginate();
 
     return view('home', compact('questions'));
 })->name('home');
 
 Route::get('question/create', 'QuestionsController@create')->name('question.create');
 Route::get('questions/latest', 'QuestionsController@latest')->name('questions.latest');
-Route::get('questions', 'QuestionsController@latest')->name('questions.latest');
+Route::get('questions', 'QuestionsController@all')->name('questions.all');
 Route::get('q/{question}', 'QuestionsController@show')->name('question.show');
-Route::get('question/subscribers', 'QuestionsController@subscribers')->name('question.subscribers');
+Route::get('question/{question}/subscribers', 'QuestionsController@subscribers')->name('question.subscribers');
 Route::match(['post', 'delete'], 'question/{question}/subscribe', 'QuestionsController@subscribe')->name('question.subscribe');
+Route::post('questions/{question}/answer', 'AnswerQuestionController')->name('question.answer');
 
 Route::get('users', 'UsersController@index')->name('users.all');
 
@@ -28,5 +29,3 @@ Route::prefix('user/{user}')
     });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

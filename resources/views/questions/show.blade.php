@@ -7,15 +7,22 @@
             @include('questions.full')
 
             <div class="question__additionals">
-                <div class="section section_solutions hidden" id="solutions" role="solutions_section">
+
+                @if($question->hasSolutions())
+                <div class="section section_solutions " id="solutions" role="solutions_section">
                     <header class="section-header">
                         <strong class="section-header__title">
-                            Решения вопроса          <span class="section-header__counter" role="answers_counter">0</span>
+                            Решения вопроса
+                            <span class="section-header__counter" role="answers_counter">
+                                {{ $question->solutions()->count() }}
+                            </span>
                         </strong>
                     </header>
                     <div class="content-list content-list_answers" id="solutions_list">
+                        @include('answers.list', ['answers' => $solutions])
                     </div>
                 </div>
+                @endif
 
                 <a class="question__invate-expert" href="#" role="auth_popup_trigger" data-value="Чтобы пригласить эксперта, который сможет ответить на вопрос" data-question="599276">
                     Пригласить эксперта
@@ -27,29 +34,15 @@
                         <strong class="section-header__title">
                             Ответы на вопрос
                             <span class="section-header__counter" role="answers_counter">
-                                {{ $question->answers_count }}
+                                {{ $answers->count() }}
                             </span>
                         </strong>
                     </header>
 
-                    @include('answers.list', ['answers' => $question->answers()->paginate()])
+                    @include('answers.list', ['answers' => $answers])
                 </div>
 
-                <div class="section section_form-answers" id="answer-form">
-                    <header class="section-header">
-                        <strong class="section-header__title">
-                            Ваш ответ на вопрос
-                        </strong>
-                    </header>
-                    <div class="empty-block">
-                        <div class="empty-block__inner">
-                            <h3 class="empty-block__title icon_unauthorized" role="title_replace">
-                                Войдите, чтобы написать ответ    </h3>
-                            <a class="empty-block__button" href="auth/ac?ret=@referer">
-                                Войти через TM ID      </a>
-                        </div>
-                    </div>
-                </div>
+                @include('answers.form')
 
                 <header class="section-header">
                     <strong class="section-header__title">Похожие вопросы</strong>

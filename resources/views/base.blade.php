@@ -4,17 +4,19 @@
     <title>@yield('title', 'Интересные вопросы') — {{ ucfirst(config('app.url')) }}</title>
 
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic&amp;subset=latin,cyrillic">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 </head>
 
 <body style="">
 
-<div class="layout">
+<div class="layout" id='app'>
     <div class="layout__canvas" id="js-canvas">
 
         @include('partials._navbar')
@@ -80,6 +82,11 @@
 
 <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0"
     style="display: none;"></ul>
+
+@section('js')
+    <script src='{{ asset('js/app.js') }}'></script>
+@show
+
 </body>
 
 </html>

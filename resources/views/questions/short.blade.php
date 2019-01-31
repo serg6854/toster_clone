@@ -52,6 +52,6 @@
             </div>
         </div>
 
-        @include('questions._answers', ['answers' => $question->answers()->count()])
+        @include('questions._answers', ['answersCount' => $question->answers_count])
     </div>
 </li>

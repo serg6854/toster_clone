@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\ProfileMenu;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         app()->bind('profileMenu', ProfileMenu::class);
+
+        Paginator::defaultView('vendor.pagination.default');
     }
 
     /**

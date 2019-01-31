@@ -8,4 +8,4 @@
 
 </div>
 
-{{ $answers->links() }}
+{{--{{ $answers->links() }}--}}
