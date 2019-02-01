@@ -38,7 +38,7 @@ class QuestionsTableSeeder extends Seeder
 //            ]);
 //        }
 
-        factory(Question::class, 100)
+        factory(Question::class, 1000)
             ->create()
             ->each(function (Question $question) {
                 factory(Answer::class, random_int(1, 10))->create([

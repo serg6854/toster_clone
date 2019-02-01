@@ -46,6 +46,22 @@ class QuestionsController extends Controller
         return view('home', compact('questions'));
     }
 
+    public function latest()
+    {
+        $questions = Question::latest()->paginate();
+
+        return view('home', compact('questions'));
+    }
+
+    public function withoutAnswer()
+    {
+        $questions = Question::orDoesntHave('answers')
+            ->latest()
+            ->paginate();
+
+        return view('home', compact('questions'));
+    }
+
     public function subscribers(Question $question)
     {
         return view('questions.subscribers', compact('question'));

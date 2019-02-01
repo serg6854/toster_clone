@@ -29,7 +29,17 @@
                     <div class="page">
                         <div class="flash-notices" role="notices_container_flash" style=""></div>
 
-                        <div class="notices-container" role="notice_container"></div>
+                        <div class="notices-container" role="notice_container">
+
+                            <div class="alert alert_success">
+                                <a href="my/profile">Заполните ваш профиль</a>, чтобы другие понимали, кто им задаёт вопросы или даёт ответы.  <a class="alert__btn_close" href="javascript:void(0)" role="notice_close" data-close-system-intrusive="2">
+                                    <svg class="icon_svg icon_close icon_close_small" viewBox="0 0 32 32">
+                                        <use xlink:href="https://toster.ru/images/sprite_0.1.svg#icon_close"></use>
+                                    </svg>
+                                </a>
+                            </div>
+
+                        </div>
 
                         @hasSection('page_title')
                         <header class="page__header">

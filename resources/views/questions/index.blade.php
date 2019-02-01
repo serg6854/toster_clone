@@ -14,14 +14,14 @@
     <nav class="page__filters_wrap" role="filters_inner">
         <ul class="filters-menu filters-menu_mobile">
             <li class="filters-menu__item">
-                <a href="questions/latest" class="filters-menu__link ">Новые вопросы</a>
+                <a href="{{ route('questions.latest') }}" class="filters-menu__link @if(request()->routeIs('questions.latest')) filters-menu__link_active @endif">Новые вопросы</a>
             </li>
             <li class="filters-menu__item">
                 <a href="questions/interesting"
-                   class="filters-menu__link  filters-menu__link_active">Интересные</a>
+                   class="filters-menu__link @if(request()->routeIs('questions.interesting')) filters-menu__link_active @endif">Интересные</a>
             </li>
             <li class="filters-menu__item">
-                <a href="questions/without_answer" class="filters-menu__link ">Без ответа</a>
+                <a href="{{ route('questions.without_answer') }}" class="filters-menu__link @if(request()->routeIs('questions.without_answer')) filters-menu__link_active @endif ">Без ответа</a>
             </li>
         </ul>
     </nav>

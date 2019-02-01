@@ -45,4 +45,10 @@ class Answer extends Model
     {
         return $this->is_solution;
     }
+
+    public function markSolution(): void
+    {
+        $this->is_solution = true;
+        $this->save();
+    }
 }

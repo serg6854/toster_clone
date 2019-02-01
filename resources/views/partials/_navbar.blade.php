@@ -32,7 +32,7 @@
     </section>
     <ul class="main-menu">
         <li class="main-menu__item">
-            <a class="main-menu__link open" id="item_questions" href="questions">
+            <a class="main-menu__link open" id="item_questions" href="{{ route('questions.all') }}">
                 <svg class="icon_svg icon_menu_questions" viewBox="0 0 32 32">
                     <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_menu_question"></use>
                 </svg>

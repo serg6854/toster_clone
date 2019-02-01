@@ -53,10 +53,16 @@
             </div>
         </div>
         <div class="buttons-group buttons-group_answer" role="desktop_answers_link">
-            <a class="btn btn_solution @if($answer->isSolution()) btn_active @endif" href="javascript:void(0);" role="auth_popup_trigger"
-               title="Необходимо авторизоваться на сайте">
-                {{ $answer->isSolution() ? 'Решение' : 'Отметить решением' }}
-            </a>
+            <form action="{{ route('answer.solution.mark', $answer) }}" method='POST' class='sidebar-block__inner'>
+                @csrf
+
+                <button class="btn btn_solution @if($answer->isSolution()) btn_active @endif"
+                   type='submit'
+                   role="auth_popup_trigger"
+                   title="Необходимо авторизоваться на сайте">
+                    {{ $answer->isSolution() ? 'Решение' : 'Отметить решением' }}
+                </button>
+            </form>
 
             <a class="btn btn_like" href="javascript:void(0);" role="auth_popup_trigger"
                title="Необходимо авторизоваться на сайте"
