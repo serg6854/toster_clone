@@ -18,11 +18,7 @@
                 </a>
             </header>
 
-            <ul class="content-list content-list_cards-users">
-                @foreach($question->subscribers as $subscriber)
-                    @include('users._item', ['user' => $subscriber])
-                @endforeach
-            </ul>
+            @include('users.list', ['users' => $question->subscribers()->paginate()])
         </div>
     </div>
 @endsection

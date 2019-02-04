@@ -4,4 +4,4 @@
     @endforeach
 </ul>
 
-{{ $users->links() }}
+{{ $users->fragment('question_subscribers')->links() }}

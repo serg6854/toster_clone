@@ -30,7 +30,19 @@
             @endauth
         </div>
     </section>
+
     <ul class="main-menu">
+        @auth
+        <li class="main-menu__item">
+            <a class="main-menu__link open" id="item_feed" href="my/feed">
+                <svg class="icon_svg icon_menu_feed" viewBox="0 0 32 32">
+                    <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_menu_feed"></use>
+                </svg>
+                Моя лента
+            </a>
+        </li>
+        @endauth
+
         <li class="main-menu__item">
             <a class="main-menu__link open" id="item_questions" href="{{ route('questions.all') }}">
                 <svg class="icon_svg icon_menu_questions" viewBox="0 0 32 32">
@@ -55,5 +67,21 @@
                 Пользователи
             </a>
         </li>
+
+        @auth
+            <li class="main-menu__item">
+                <a class="main-menu__link " href="my/tracker">
+                    <svg class="icon_svg icon_menu_notification" viewBox="0 0 32 32">
+                        <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_menu_notification"></use>
+                    </svg>
+                    Уведомления
+                </a>
+                <a class="main-menu__notifications-settings" href="tracker/settings" title="Перейти к настройке уведомлений">
+                    <svg class="icon_svg icon_menu_settings_tracker" viewBox="0 0 32 32">
+                        <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_menu_settings"></use>
+                    </svg>
+                </a>
+            </li>
+        @endauth
     </ul>
 </aside>

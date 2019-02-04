@@ -19,6 +19,8 @@ use Illuminate\Support\Collection;
  */
 class Question extends Model
 {
+    use HasSubscribers;
+
     public const EASY = 1;
 
     public const MIDDLE = 2;
@@ -42,13 +44,7 @@ class Question extends Model
         'user_id'
     ];
 
-    /**
-     * @return BelongsToMany
-     */
-    public function subscribers(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'question_subscriber');
-    }
+    public $subscribersTable = 'question_subscriber';
 
     /**
      * @return BelongsTo
@@ -66,6 +62,11 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
     /**
      * @return HasMany
      */
@@ -73,26 +74,6 @@ class Question extends Model
     {
         return $this->hasMany(Answer::class)
             ->where('is_solution', true);
-    }
-
-    public function subscribe(): void
-    {
-        $userId = auth()->user()->id;
-
-        $this->isSubscribed()
-            ? $this->subscribers()->detach($userId)
-            : $this->subscribers()->attach($userId);
-    }
-
-    public function isSubscribed($user = null)
-    {
-        if (!auth()->check()) {
-            return false;
-        }
-
-        $user = $user ?? auth()->user();
-
-        return $this->subscribers->contains($user->id);
     }
 
     /**

@@ -3,19 +3,22 @@
 
         @include('authors._summary', ['author' => $question->author])
 
-        @include('questions._subscribers', ['subscribers' => $question->subscribers])
+        @includeWhen($question->subscribers_count >= 1, 'questions._subscribers', ['subscribers' => $question->subscribers])
     </div>
 
     <div class="question__tags">
-        <a class="question__tags-image" href="https://toster.ru/tag/javascript">
-            <img class="tag__image tag__image_bg"
-                 src="https://habrastorage.org/r/w32/webt/59/cc/76/59cc7600c78a2239379574.jpeg"
-                 alt="javascript">
+        <a class="question__tags-image" href="https://toster.ru/tag/laravel">
+            <img class="tag__image tag__image_bg" src="https://habrastorage.org/r/w32/files/5b6/200/e96/5b6200e965f048568eec7d4724705b85.png" alt="laravel">
         </a>
+
         <ul class="tags-list">
-            <li class="tags-list__item  tag_357" data-tagname="javascript">
-                <a href="https://toster.ru/tag/javascript">JavaScript </a>
+            @foreach($question->tags as $tag)
+            <li class="tags-list__item tag_{{ $tag->id }} @if($tag->isSubscribed()) subscribed @endif">
+                <a href="{{ route('tag.show', $tag) }}">
+                    {{ $tag->title }}
+                </a>
             </li>
+            @endforeach
         </ul>
     </div>
 

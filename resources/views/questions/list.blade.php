@@ -16,6 +16,7 @@
 
         @endforeach
     </ul>
+
+    {{ $questions->links() }}
 @endif
 
-{{ $questions->links() }}

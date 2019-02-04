@@ -26,15 +26,15 @@
                 </li>
 
                 <li class="inline-list__item inline-list__item_bullet">
-                    @empty($user->questions_count)
+                    @empty($user->questions()->count())
                         <span class="card__stats-counter card__stats-counter_zero">
-                            {{ $user->questions_count }} вопросов
+                            0 вопросов
                         </span>
                     @else
                         <a href="{{ route('profile.questions', $user) }}" class="card__stats-counter"
-                           title="Вопросов: {{ $user->questions_count }}">
-                            <meta itemprop="interactionCount" content="{{ $user->questions_count }} questions">
-                            {{ $user->questions_count }} вопросов
+                           title="Вопросов: {{ $user->questions()->count() }}">
+                            <meta itemprop="interactionCount" content="{{ $user->questions()->count() }} questions">
+                            {{ $user->questions()->count() }} вопросов
                         </a>
                     @endempty
                 </li>

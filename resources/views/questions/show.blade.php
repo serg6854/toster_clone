@@ -19,9 +19,8 @@
                             </span>
                             </strong>
                         </header>
-                        <div class="content-list content-list_answers" id="solutions_list">
-                            @include('answers.list', ['answers' => $solutions])
-                        </div>
+
+                        @include('answers.list', ['answers' => $solutions, 'id' => 'solutions_list'])
                     </div>
                 @endif
 
@@ -72,9 +71,8 @@
                                                 +1 ещё
                                             </li>
                                         </ul>
-                                        <span class="question__complexity">
-                                            @include('questions._complexity', ['complexity' => $question->complexity])
-                                        </span>
+
+                                        @include('questions._complexity', ['complexity' => $question->complexity])
                                     </div>
                                     <h2 class="question__title">
                                         <a class="question__title-link question__title-link_list"

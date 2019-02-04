@@ -21,6 +21,8 @@ Route::post('answer/{answer}/solution', 'AnswersController@markSolution')->name(
 
 Route::get('users', 'UsersController@index')->name('users.all');
 
+Route::get('tags/{tag}', 'TagsController@show')->name('tag.show');
+
 Route::prefix('user/{user}')
     ->group(function () {
 

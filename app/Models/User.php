@@ -56,9 +56,17 @@ class User extends Authenticatable
     /**
      * @return BelongsToMany
      */
-    public function subscriptions(): BelongsToMany
+    public function questionsSubscriptions(): BelongsToMany
     {
         return $this->belongsToMany(Question::class, 'question_subscriber');
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function tagSubscriptions(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class, 'tag_subscriber');
     }
 
     /**

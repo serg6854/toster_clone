@@ -2,25 +2,29 @@
     <div class="question question_short">
         <div class="question__content">
             <div class="question__content_fluid">
-                <div class="question__tags">
-                    <a class="question__tags-image" href="https://toster.ru/tag/mysql">
-                        <img class="tag__image tag__image_bg"
-                             src="https://habrastorage.org/r/w32/webt/5b/53/d5/5b53d5517cb34636505650.png"
-                             alt="mysql">
-                    </a>
 
+                <div class='question__tags'>
+                    @php($tag = $question->tags->first())
+                    <a class="question__tags-image" href="{{ route('tag.show', $tag) }}">
+                        <img class="tag__image tag__image_bg"
+                             src="https://habrastorage.org/r/w32/files/373/e8b/dd3/373e8bdd3cb644d3bbeba47d34d1876d.png"
+                             alt="php">
+                    </a>
                     <ul class="tags-list tags-list_short">
-                        <li class="tags-list__item  tag_306">
-                            <a href="https://toster.ru/tag/mysql">MySQL</a>
+                        <li class="tags-list__item tag_{{ $tag->id }} @if($tag->isSubscribed()) subscribed @endif">
+                            <a href="{{ route('tag.show', $tag) }}">
+                                {{ $tag->title }}
+                            </a>
                         </li>
+
+                        @if($question->tags->count() >= 2)
                         <li class="tags-list__item tags-list__item_more">
-                            +2 ещё
+                            +{{ $question->tags->count() - 1 }} ещё
                         </li>
+                        @endif
                     </ul>
 
-                    <span class="question__complexity">
-                        @include('questions._complexity', ['complexity' => $question->complexity])
-                    </span>
+                    @include('questions._complexity', ['complexity' => $question->complexity])
                 </div>
 
                 <h2 class="question__title">

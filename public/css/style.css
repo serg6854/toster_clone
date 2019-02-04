@@ -3360,7 +3360,7 @@ a:focus, a:hover, .link:focus, .ui-search-type-search > a > strong:focus, .link_
     position: relative
 }
 
-.btn_complexity .svg-icon_level-0 {
+.btn_complexity .svg-icon_level-4 {
     color: #898d92
 }
 
@@ -3368,11 +3368,11 @@ a:focus, a:hover, .link:focus, .ui-search-type-search > a > strong:focus, .link_
     color: #98bc4d
 }
 
-.btn_complexity .svg-icon_level-3 {
+.btn_complexity .svg-icon_level-2 {
     color: #d8a326
 }
 
-.btn_complexity .svg-icon_level-4 {
+.btn_complexity .svg-icon_level-3 {
     color: #d9382e
 }
 

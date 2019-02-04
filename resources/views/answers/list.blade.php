@@ -1,4 +1,4 @@
-<div class="content-list content-list_answers" id="answers_list">
+<div class="content-list content-list_answers {{ $class ?? '' }}" id="{{ $id ?? 'answers_list' }}">
     {{--content-list_answers_profile--}}
     @foreach($answers as $answer)
 

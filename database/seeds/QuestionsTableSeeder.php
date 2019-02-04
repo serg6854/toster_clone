@@ -2,6 +2,7 @@
 
 use App\Models\Answer;
 use App\Models\Question;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -38,15 +39,18 @@ class QuestionsTableSeeder extends Seeder
 //            ]);
 //        }
 
-        factory(Question::class, 1000)
+        factory(Question::class, 50)
             ->create()
             ->each(function (Question $question) {
                 factory(Answer::class, random_int(1, 10))->create([
                     'question_id' => $question->id
                 ]);
 
-                $subscribers = User::inRandomOrder()->take(random_int(1, 50))->get();
+                $subscribers = User::inRandomOrder()->take(random_int(1, 20))->get();
+                $tags = Tag::inRandomOrder()->take(random_int(1, 5))->get();
+
                 $question->subscribers()->saveMany($subscribers);
+                $question->tags()->saveMany($tags);
             });
 
     }
