@@ -74,15 +74,18 @@
             </a>
 
             <a class="btn btn_link btn_comments-toggle"
-               href="https://toster.ru/answer?answer_id=1336497#comments_list_1336497"
+               href="https://toster.ru/answe2r?answer_id=1336497#comments_list_1336497"
                id="reply_answer_comment_link_1336497" title="Написать комментарий"
                role="toggle_answer_comments">
                 <span>
                     <meta itemprop="interactionCount" content="1 Comment">
-                    <strong>1</strong> комментарий
+                    <strong>{{ $question->comments->count() }}</strong> комментарий
                 </span>
             </a>
         </div>
-        @include('comments.list')
+
+        @if(!empty($includeComments))
+            @include('comments.list')
+        @endif
     </div>
 </div>

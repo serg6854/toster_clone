@@ -43,16 +43,16 @@ class QuestionsController extends Controller
 
     public function show(Question $question)
     {
-        $answers = $question->answers->filter(function ($item) {
-            return !$item->is_solution;
-        });
+        $answers = $question->answers->filter->isSolution();
+        $similarQuestions = Question::similar($question)->paginate();
 
         event(new ViewQuestionEvent($question));
 
         return view('questions.show', [
-            'question'  => $question,
-            'solutions' => $question->solutions,
-            'answers'   => $answers,
+            'question'         => $question,
+            'similarQuestions' => $similarQuestions,
+            'solutions'        => $question->solutions,
+            'answers'          => $answers,
         ]);
     }
 

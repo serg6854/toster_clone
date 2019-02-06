@@ -17,6 +17,7 @@ class ProfileMenu
     }
 
     protected $tabItems = [
+        ['route' => 'profile.info', 'title' => 'Инфо'],
         ['route' => 'profile.answers', 'title' => 'Ответы'],
         ['route' => 'profile.questions', 'title' => 'Вопросы'],
     ];

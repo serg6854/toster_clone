@@ -1,4 +1,4 @@
-<a class="{{ $class ?? 'user-summary__avatar' }}" href="{{ route('profile', $user) }}">
+<a class="user-summary__avatar {{ $class ?? '' }}" href="{{ route('profile', $user) }}">
     @empty($user->avatar)
         <svg class="icon_userpic" viewBox="0 0 32 32">
             <use xlink:href="http://toster.test/images/sprite_0.1.svg#icon_userpic"></use>

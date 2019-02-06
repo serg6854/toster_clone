@@ -41,7 +41,7 @@
                             </strong>
                         </header>
 
-                        @include('answers.list', ['answers' => $answers])
+                        @include('answers.list', ['includeComments' => true])
                     </div>
                 @endif
 
@@ -52,78 +52,22 @@
                 </header>
 
                 <ul class="content-list" id="related_questions_599276">
-                    <li class="content-list__item" role="content-list_item">
-                        <div class="question question_short">
-                            <div class="question__content">
-                                <div class="question__content_fluid">
-                                    <div class="question__tags">
-                                        <a class="question__tags-image" href="https://toster.ru/tag/javascript">
-                                            <img class="tag__image tag__image_bg"
-                                                 src="https://habrastorage.org/r/w32/webt/59/cc/76/59cc7600c78a2239379574.jpeg"
-                                                 alt="javascript">
-                                        </a>
-                                        <ul class="tags-list tags-list_short">
-                                            <li class="tags-list__item  tag_357">
-                                                <a href="https://toster.ru/tag/javascript">
-                                                    JavaScript </a>
-                                            </li>
-                                            <li class="tags-list__item tags-list__item_more">
-                                                +1 ещё
-                                            </li>
-                                        </ul>
+                    @foreach($similarQuestions as $question)
+                        @include('questions.short')
+                    @endforeach
 
-                                        @include('questions._complexity', ['complexity' => $question->complexity])
-                                    </div>
-                                    <h2 class="question__title">
-                                        <a class="question__title-link question__title-link_list"
-                                           href="https://toster.ru/q/599422?from=questions_similar">
-                                            Как dev tools определить выполнение скрипта? </a>
-                                    </h2>
-
-                                    <ul class="question__attrs inline-list">
-                                        <li class="inline-list__item inline-list__item_bullet">
-                                            <span class="question__views-count"
-                                                  title="Количество подписавшихся на вопрос">
-                                                {{ $question->subscribers_count }} подписчика
-                                            </span>
-                                        </li>
-                                        <li class="inline-list__item inline-list__item_bullet">
-                                            <time class="question__date question__date_publish" pubdate=""
-                                                  title="Дата публикации: 29 янв. 2019, в 16:54"
-                                                  datetime="2019-01-29 16:54:03">
-                                                13 минут назад
-                                            </time>
-                                        </li>
-                                        <li class="inline-list__item inline-list__item_bullet">
-                                            @include('questions._views', ['views' => $question->views])
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="question__answers-count ">
-                                <a class="mini-counter" href="https://toster.ru/q/599422#answers"
-                                   title="Количество ответов на вопрос" role="lazy_anchor">
-                                    <div class="mini-counter__count mini-counter__count_grey">
-                                        0
-                                    </div>
-                                    <div class="mini-counter__value">
-                                        ответов
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="content-list__item content-list__item_more" role="related_replace">
+                    @if($similarQuestions->hasMorePages())
+                    <li class='tags-list tags-list_short'>
                         <a class="btn btn_outline_grey" role="related_more" data-remote=""
                            href="questions/related?question_id=599276&amp;skip=10">
                             <span class="more">Показать ещё</span>
                             <span class="load">Загружается…</span>
                         </a>
                     </li>
+                    @endif
                 </ul>
             </div>
         </div>
     </div>
 @endsection
+

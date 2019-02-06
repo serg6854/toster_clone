@@ -32,6 +32,7 @@ Route::prefix('user/{user}')
     ->group(function () {
 
         Route::get('', 'ProfileController@show')->name('profile');
+        Route::get('info', 'ProfileController@info')->name('profile.info');
         Route::get('answers', 'ProfileController@answers')->name('profile.answers');
         Route::get('questions', 'ProfileController@questions')->name('profile.questions');
         Route::get('subscriptions', 'ProfileController@subscriptions')->name('profile.subscriptions');

@@ -4,11 +4,11 @@ namespace App\Models;
 
 use App\Providers\CreatedQuestionEvent;
 use Illuminate\Database\Eloquent\{
+    Builder,
     Model,
     Relations\BelongsTo,
     Relations\BelongsToMany,
-    Relations\HasMany
-};
+    Relations\HasMany};
 use Illuminate\Support\Collection;
 
 /**
@@ -120,5 +120,23 @@ class Question extends Model
     public function isAuthor(User $user)
     {
         return $this->author->is($user);
+    }
+
+    /**
+     * Scope a query to fetch similar questions
+     *
+     * @param Builder $query
+     * @param self    $question
+     *
+     * @return Builder
+     */
+    public function scopeSimilar(Builder $query, Question $question)
+    {
+        return $query
+            ->whereHas('tags', function ($query) use ($question) {
+                $query->whereIn('title', $question->tags->pluck('title'));
+            })
+            ->where('id', '!=', $question->id)
+        ;
     }
 }

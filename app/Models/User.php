@@ -21,7 +21,11 @@ class User extends Authenticatable
      * {@inheritdoc}
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name',
+        'last_name',
+        'nickname',
+        'email',
+        'password',
     ];
 
     /**

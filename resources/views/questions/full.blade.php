@@ -186,7 +186,7 @@
             <li class="content-list__item">
                 <div class="comment">
                     <div class="comment__header">
-                        @include('authors._summary', ['author' => auth()->user()])
+                        @include('authors._summary', ['author' => auth()->user(), 'class' => 'user-summary_comment'])
                     </div>
 
                     <div class="comment__body">

@@ -1,4 +1,4 @@
-<div class="user-summary " itemprop="author creator" itemscope="" itemtype="http://schema.org/Person">
+<div class="user-summary {{ $class ?? ''  }}" itemprop="author creator" itemtype="http://schema.org/Person">
     @include('users._avatar', ['user' => $author])
 
     <div class="user-summary__desc">
@@ -9,9 +9,9 @@
             {{ '@' . $author->nickname }}
         </span>
 
-        @if($author->about)
+        @if($author->short_about)
         <div class="user-summary__about" itemprop="description">
-            {{ $author->about }}
+            {{ $author->short_about }}
         </div>
         @endif
     </div>

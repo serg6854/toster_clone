@@ -14,6 +14,13 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function info(User $user)
+    {
+        return view('profile.info', [
+            'user' => $user
+        ]);
+    }
+
     public function answers(User $user)
     {
         $answers = $user->answers()->paginate();
