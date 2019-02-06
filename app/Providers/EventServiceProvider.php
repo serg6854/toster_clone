@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Events\QuestionViewEvent;
+use App\Events\ViewQuestionEvent;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -16,11 +16,14 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
+        Registered::class        => [
             SendEmailVerificationNotification::class,
         ],
-        QuestionViewEvent::class => [
+        ViewQuestionEvent::class => [
             UpdateQuestionViews::class
+        ],
+        CreatedQuestionEvent::class => [
+
         ]
     ];
 

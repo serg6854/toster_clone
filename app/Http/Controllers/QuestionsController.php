@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\QuestionViewEvent;
+use App\Events\ViewQuestionEvent;
+use App\Http\Requests\StoreQuestionRequest;
 use App\Models\Question;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
@@ -13,7 +15,8 @@ class QuestionsController extends Controller
         $this->middleware('auth')
             ->only([
                 'subscribe',
-                'create'
+                'create',
+                'store'
             ])
         ;
     }
@@ -23,13 +26,28 @@ class QuestionsController extends Controller
         return view('questions.create');
     }
 
+    public function store(StoreQuestionRequest $request)
+    {
+        $question = new Question([
+            'title' => $request->title,
+            'body'  => $request->body,
+        ]);
+        foreach (explode(',', $request->tags) as $tagTitle) {
+            $tags[] = Tag::firstOrNew(['title' => $tagTitle]);
+        }
+        $question->save();
+        $question->tags()->saveMany($tags, ['question_id' => $question->id]);
+
+        return redirect()->route('questions.latest');
+    }
+
     public function show(Question $question)
     {
         $answers = $question->answers->filter(function ($item) {
             return !$item->is_solution;
         });
 
-        event(new QuestionViewEvent($question));
+        event(new ViewQuestionEvent($question));
 
         return view('questions.show', [
             'question'  => $question,

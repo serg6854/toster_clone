@@ -17,7 +17,9 @@
                             <span class="user-summary__nickname">
                                 <meta itemprop="alternateName" content="neokortex">
                                 @neokortex
-                                <span class="author_mark">Автор вопроса</span>
+                                {{--@if($question->isAuthor($comment->author))--}}
+                                    {{--<span class="author_mark">Автор вопроса</span>--}}
+                                {{--@endif--}}
                             </span>
                         </div>
                     </div>

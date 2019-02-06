@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Events\QuestionViewEvent;
+use App\Events\ViewQuestionEvent;
 use App\Models\Question;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -22,10 +22,11 @@ class UpdateQuestionViews
     /**
      * Handle the event.
      *
-     * @param  QuestionViewEvent  $event
+     * @param  ViewQuestionEvent $event
+     *
      * @return void
      */
-    public function handle(QuestionViewEvent $event)
+    public function handle(ViewQuestionEvent $event)
     {
         /** @var Question $question */
         $question = $event->question;

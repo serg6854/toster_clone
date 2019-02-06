@@ -8,15 +8,17 @@
                      src="https://habrastorage.org/r/w120/files/373/e8b/dd3/373e8bdd3cb644d3bbeba47d34d1876d.png"
                      alt="php">
             </div>
-            <h1 class="page-header__title" itemprop="name">PHP</h1>
+            <h1 class="page-header__title" itemprop="name">{{ $tag->title }}</h1>
         </div>
+
         <div class="page-header__stats">
             <ul class="inline-list inline-list_centered inline-list_tags-stats">
                 <li class="inline-list__item inline-list__item_bordered">
-                    <a class="mini-counter" href="https://toster.ru/tag/php/users">
+                    <a class="mini-counter" href="{{ route('tag.questions', $tag) }}">
                         <meta itemprop="interactionCount" content="30075 subscribers">
-                        <div class="mini-counter__count" role="subscribers_counter" title="30075 подписчиков">
-                            30075
+                        <div class="mini-counter__count" role="subscribers_counter"
+                             title="{{ $tag->subscribers()->count() }} подписчиков">
+                            {{ $tag->subscribers()->count() }}
                         </div>
                         <div class="mini-counter__value">подписчиков</div>
                     </a>
@@ -24,37 +26,38 @@
                 <li class="inline-list__item inline-list__item_bordered">
                     <a class="mini-counter" href="https://toster.ru/tag/php/questions">
                         <meta itemprop="interactionCount" content="48706 questions">
-                        <div class="mini-counter__count">48706</div>
+                        <div class="mini-counter__count">{{ $tag->questions()->count() }}</div>
                         <div class="mini-counter__value">вопросов</div>
                     </a>
                 </li>
                 <li class="inline-list__item inline-list__item_bordered">
-        <span class="mini-counter">
-          <meta itemprop="interactionCount" content="47% solutions">
-          <div class="mini-counter__count mini-counter__count-solutions">47%</div>
-          <div class="mini-counter__value">решено</div>
-        </span>
+                    <span class="mini-counter">
+                        <meta itemprop="interactionCount" content="47% solutions">
+                        <div class="mini-counter__count mini-counter__count-solutions">{{ $tag->solution }}%</div>
+                        <div class="mini-counter__value">решено</div>
+                    </span>
                 </li>
             </ul>
         </div>
         <div class="page-header__buttons page-header__buttons_centered">
-            <div class="btn_split" id="subscribe_link_hard_260" role="dropdown">
+            @if($tag->isSubscribed())
+                <div class="btn_split" id="subscribe_link_hard_260" role="dropdown">
                 <a class="btn btn_subscribe btn_blue" data-method="post" data-remote="true" data-post-tag_id="260"
                    href="my/toggle_watch_tag">
                     Вы подписаны
                 </a>
                 <span class="btn btn_more btn_blue" data-toggle="dropdown">
-        <svg class="icon_svg" viewBox="0 0 32 32">
-          <use xlink:href="https://toster.ru/images/sprite_0.1.svg#icon_menu_settings"></use>
-        </svg>
-      </span>
+                    <svg class="icon_svg" viewBox="0 0 32 32">
+                        <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_menu_settings"></use>
+                    </svg>
+                </span>
                 <div class="dropdown__menu dropdown__menu_center">
                     <ul class="menu menu_dropdown">
                         <li class="menu__item">
                             <label class="checkbox checkbox_flat checkbox_force">
                                 <input type="checkbox" data-force-watch-tag="260">
                                 <svg class="icon_form icon_check" viewBox="0 0 45 32">
-                                    <use xlink:href="https://toster.ru/images/sprite_0.1.svg#icon_check"></use>
+                                    <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_check"></use>
                                 </svg>
                                 <span class="checkbox__label">Высылать на email новые вопросы</span>
                             </label>
@@ -62,11 +65,21 @@
                     </ul>
                 </div>
             </div>
+            @else
+                <form action='{{ route('tag.subscribe', $tag) }}' method='post' class='btn_split'>
+                    @csrf
+
+                    <button type='submit' class="btn btn_subscribe">
+                        Подписаться
+                    </button>
+                </form>
+            @endif
+
             <div class="dropdown dropdown_settings" role="dropdown">
                 <button class="btn btn_more" data-toggle="dropdown" role="dropdown_trigger" type="button"
                         title="Настройки тега">
                     <svg class="icon_svg icon_dots" viewBox="0 0 131 32">
-                        <use xlink:href="https://toster.ru/images/sprite_0.1.svg#icon_dots"></use>
+                        <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_dots"></use>
                     </svg>
                 </button>
                 <div class="dropdown__menu">
@@ -88,30 +101,31 @@
     </header>
 
     <div class="page__tabs page__tabs_mobile" role="tabs_container">
-  <span class="page__tabs-toggler" role="tabs_toggler">
-    <svg class="icon_svg icon_arrow_down" viewBox="0 0 51 32">
-      <use xlink:href="https://toster.ru/images/sprite_0.1.svg#icon_arrow_down"></use>
-    </svg>
-  </span>
+        <span class="page__tabs-toggler" role="tabs_toggler">
+            <svg class="icon_svg icon_arrow_down" viewBox="0 0 51 32">
+                <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_arrow_down"></use>
+            </svg>
+        </span>
         <div class="page__tabs-subheader">
             <div class="page__tabs-title">
                 Вопросы
             </div>
         </div>
+
         <nav class="page__tabs_wrap" role="tabs_inner">
             <ul class="tabs tabs_mobile">
                 <li class="tabs__item">
-                    <a class="tabs__link " href="https://toster.ru/tag/php/info">
+                    <a class="tabs__link @if(request()->routeIs('tag.info')) tabs__link_active @endif" href="{{ route('tag.info', $tag) }}">
                         Информация
                     </a>
                 </li>
                 <li class="tabs__item">
-                    <a class="tabs__link  tabs__link_active" href="https://toster.ru/tag/php/questions">
+                    <a class="tabs__link @if(request()->routeIs('tag.questions')) tabs__link_active @endif" href="{{ route('tag.questions', $tag) }}">
                         Вопросы
                     </a>
                 </li>
                 <li class="tabs__item">
-                    <a class="tabs__link " href="https://toster.ru/tag/php/users">
+                    <a class="tabs__link @if(request()->routeIs('tag.subscribers')) tabs__link_active @endif" href="{{ route('tag.subscribers', $tag) }}">
                         Подписчики
                     </a>
                 </li>
@@ -120,11 +134,11 @@
     </div>
 
     <div class="page__filters page__filters_second-lavel" role="filters_container">
-  <span class="page__filters-toggler" role="filters_toggler">
-    <svg class="icon_svg icon_arrow_down" viewBox="0 0 51 32">
-      <use xlink:href="https://toster.ru/images/sprite_0.1.svg#icon_arrow_down"></use>
-    </svg>
-  </span>
+          <span class="page__filters-toggler" role="filters_toggler">
+            <svg class="icon_svg icon_arrow_down" viewBox="0 0 51 32">
+              <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_arrow_down"></use>
+            </svg>
+          </span>
         <div class="page__filters-subheader">
             <div class="page__filters-title">
                 Новые
@@ -168,7 +182,7 @@
                                 <label class="checkbox checkbox_flat">
                                     <input type="checkbox" name="complexities[]" value="2" checked="">
                                     <svg class="icon_form icon_check" viewBox="0 0 45 32">
-                                        <use xlink:href="https://toster.ru/images/sprite_0.1.svg#icon_check"></use>
+                                        <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_check"></use>
                                     </svg>
                                     <span class="checkbox__label">Простой</span>
                                 </label>
@@ -177,7 +191,7 @@
                                 <label class="checkbox checkbox_flat">
                                     <input type="checkbox" name="complexities[]" value="3" checked="">
                                     <svg class="icon_form icon_check" viewBox="0 0 45 32">
-                                        <use xlink:href="https://toster.ru/images/sprite_0.1.svg#icon_check"></use>
+                                        <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_check"></use>
                                     </svg>
                                     <span class="checkbox__label">Средний</span>
                                 </label>
@@ -186,7 +200,7 @@
                                 <label class="checkbox checkbox_flat">
                                     <input type="checkbox" name="complexities[]" value="4" checked="">
                                     <svg class="icon_form icon_check" viewBox="0 0 45 32">
-                                        <use xlink:href="https://toster.ru/images/sprite_0.1.svg#icon_check"></use>
+                                        <use xlink:href="{{ asset('images/sprite_0.1.svg') }}#icon_check"></use>
                                     </svg>
                                     <span class="checkbox__label">Сложный</span>
                                 </label>

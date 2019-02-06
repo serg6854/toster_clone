@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property bool is_solution
@@ -41,12 +42,20 @@ class Answer extends Model
         return $this->belongsTo(Question::class);
     }
 
+    /**
+     * @return BelongsToMany
+     */
+    public function comments(): BelongsToMany
+    {
+        return $this->belongsToMany(Comment::class);
+    }
+
     public function isSolution(): bool
     {
         return $this->is_solution;
     }
 
-    public function markSolution(): void
+    public function markAsSolution(): void
     {
         $this->is_solution = true;
         $this->save();

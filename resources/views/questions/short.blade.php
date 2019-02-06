@@ -19,7 +19,7 @@
 
                         @if($question->tags->count() >= 2)
                         <li class="tags-list__item tags-list__item_more">
-                            +{{ $question->tags->count() - 1 }} ещё
+                            +{{ $question->tags->slice(1)->count() }} ещё
                         </li>
                         @endif
                     </ul>

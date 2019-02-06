@@ -9,6 +9,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('questions', 'QuestionsController@all')->name('questions.all');
+Route::post('questions', 'QuestionsController@store')->name('question.store');
 Route::get('question/create', 'QuestionsController@create')->name('question.create');
 Route::get('questions/latest', 'QuestionsController@all')->name('questions.latest');
 Route::get('questions/without_answer', 'QuestionsController@withoutAnswer')->name('questions.without_answer');
@@ -22,6 +23,10 @@ Route::post('answer/{answer}/solution', 'AnswersController@markSolution')->name(
 Route::get('users', 'UsersController@index')->name('users.all');
 
 Route::get('tags/{tag}', 'TagsController@show')->name('tag.show');
+Route::get('tags/{tag}/info', 'TagsController@info')->name('tag.info');
+Route::get('tags/{tag}/questions', 'TagsController@questions')->name('tag.questions');
+Route::get('tags/{tag}/subscribers', 'TagsController@subscribers')->name('tag.subscribers');
+Route::post('tags/{tag}/subscribe', 'TagsController@subscribe')->name('tag.subscribe');
 
 Route::prefix('user/{user}')
     ->group(function () {

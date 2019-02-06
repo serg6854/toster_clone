@@ -15,19 +15,19 @@ trait HasSubscribers
     }
 
     /**
-     * @param null $user
+     * @param User|null $user
      *
      * @return bool
      */
-    public function isSubscribed($user = null): bool
+    public function isSubscribed(User $user = null): bool
     {
         if (auth()->guest()) {
             return false;
         }
 
-        $user = $user ?? auth()->user();
+        $userId = $user->id ?? auth()->id();
 
-        return $this->subscribers->contains($user->id);
+        return $this->subscribers->contains($userId);
     }
 
     public function subscribe(): void

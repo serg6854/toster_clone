@@ -3360,19 +3360,19 @@ a:focus, a:hover, .link:focus, .ui-search-type-search > a > strong:focus, .link_
     position: relative
 }
 
-.btn_complexity .svg-icon_level-4 {
+.svg-icon_level-4 {
     color: #898d92
 }
 
-.btn_complexity .svg-icon_level-1, .btn_complexity .svg-icon_level-2 {
+.svg-icon_level-1 {
     color: #98bc4d
 }
 
-.btn_complexity .svg-icon_level-2 {
+.svg-icon_level-2 {
     color: #d8a326
 }
 
-.btn_complexity .svg-icon_level-3 {
+.svg-icon_level-3 {
     color: #d9382e
 }
 
@@ -7925,22 +7925,6 @@ html, body {
     stroke-width: 0;
     pointer-events: none;
     position: relative
-}
-
-.question__complexity .svg-icon_level-0 {
-    color: #898d92
-}
-
-.question__complexity .svg-icon_level-1, .question__complexity .svg-icon_level-2 {
-    color: #98bc4d
-}
-
-.question__complexity .svg-icon_level-3 {
-    color: #d8a326
-}
-
-.question__complexity .svg-icon_level-4 {
-    color: #d9382e
 }
 
 .question__complexity-text {

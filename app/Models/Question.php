@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Providers\CreatedQuestionEvent;
 use Illuminate\Database\Eloquent\{
     Model,
     Relations\BelongsTo,
@@ -11,11 +12,13 @@ use Illuminate\Database\Eloquent\{
 use Illuminate\Support\Collection;
 
 /**
- * @property string              body
- * @property integer             complexity
- * @property User[]|Collection   subscribers
- * @property Answer[]|Collection answers
- * @property Answer[]|Collection solutions
+ * @property string               body
+ * @property integer              complexity
+ * @property User[]|Collection    subscribers
+ * @property Answer[]|Collection  answers
+ * @property Answer[]|Collection  solutions
+ * @property Comment[]|Collection comments
+ * @property User                 author
  */
 class Question extends Model
 {
@@ -41,10 +44,24 @@ class Question extends Model
      * {@inheritdoc}
      */
     protected $fillable = [
+        'title',
+        'body',
         'user_id'
     ];
 
     public $subscribersTable = 'question_subscriber';
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::creating(function (Question $question) {
+            $question->author()->associate(auth()->user());
+        });
+        self::created(function (Question $question) {
+            event(new CreatedQuestionEvent($question));
+        });
+    }
 
     /**
      * @return BelongsTo
@@ -62,9 +79,20 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
+    /**
+     * @return BelongsToMany
+     */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function comments(): BelongsToMany
+    {
+        return $this->belongsToMany(Comment::class);
     }
 
     /**
@@ -82,5 +110,15 @@ class Question extends Model
     public function hasSolutions(): bool
     {
         return $this->solutions->isNotEmpty();
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function isAuthor(User $user)
+    {
+        return $this->author->is($user);
     }
 }

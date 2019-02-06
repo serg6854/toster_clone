@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace App\Providers;
 
 use App\Models\Question;
 use Illuminate\Broadcasting\Channel;
@@ -11,11 +11,14 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class QuestionViewEvent
+class CreatedQuestionEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $question;
+    /**
+     * @var Question
+     */
+    protected $question;
 
     /**
      * Create a new event instance.
@@ -25,5 +28,15 @@ class QuestionViewEvent
     public function __construct(Question $question)
     {
         $this->question = $question;
+    }
+
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return \Illuminate\Broadcasting\Channel|array
+     */
+    public function broadcastOn()
+    {
+        return new PrivateChannel('channel-name');
     }
 }
