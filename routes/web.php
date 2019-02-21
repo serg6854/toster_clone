@@ -22,6 +22,7 @@ Route::post('answer/{answer}/solution', 'AnswersController@markSolution')->name(
 
 Route::get('users', 'UsersController@index')->name('users.all');
 
+Route::get('tags', 'TagsController@list')->name('tags');
 Route::get('tags/{tag}', 'TagsController@show')->name('tag.show');
 Route::get('tags/{tag}/info', 'TagsController@info')->name('tag.info');
 Route::get('tags/{tag}/questions', 'TagsController@questions')->name('tag.questions');

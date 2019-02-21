@@ -31,7 +31,9 @@
                     <label class="field__label">Теги вопроса</label>
                     <div class="field__desc">Укажите от 1 до 5 тегов — предметных областей, к которым вопрос относится.</div>
                     <div class="field__content" role="field_content">
-                        <input class="field__input" id="question_tags" required="true" name="tags" type="text" value="{{ old('tags') }}">
+
+                        <div id='form-tags'></div>
+
                         {{--<ul class="tagit ui-widget ui-widget-content ui-corner-all">--}}
                             {{--<li class="tagit-new"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>--}}
                                 {{--<input type="text" maxlength="50" class="ui-widget-content ui-autocomplete-input" tabindex="3" autocomplete="off"></li>--}}
